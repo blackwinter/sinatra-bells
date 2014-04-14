@@ -1,0 +1,40 @@
+= sinatra-bells - Sinatra with some more bells and whistles
+
+== VERSION
+
+This documentation refers to sinatra-bells version 0.0.0
+
+
+== DESCRIPTION
+
+Extends Sinatra[http://sinatrarb.com/] with some convenience shortcuts.
+
+
+== LINKS
+
+Documentation:: https://blackwinter.github.io/sinatra-bells/
+Source code::   https://github.com/blackwinter/sinatra-bells
+RubyGem::       https://rubygems.org/gems/sinatra-bells
+
+
+== AUTHORS
+
+* Jens Wille <mailto:jens.wille@gmail.com>
+
+
+== LICENSE AND COPYRIGHT
+
+Copyright (C) 2014 Jens Wille
+
+sinatra-bells is free software: you can redistribute it and/or modify it
+under the terms of the GNU Affero General Public License as published by
+the Free Software Foundation, either version 3 of the License, or (at your
+option) any later version.
+
+sinatra-bells is distributed in the hope that it will be useful, but
+WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY
+or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Affero General Public
+License for more details.
+
+You should have received a copy of the GNU Affero General Public License
+along with sinatra-bells. If not, see <http://www.gnu.org/licenses/>.

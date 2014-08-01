@@ -12,7 +12,7 @@ Extends Sinatra[http://sinatrarb.com/] with some convenience shortcuts.
 
 == LINKS
 
-Documentation:: https://blackwinter.github.io/sinatra-bells/
+Documentation:: https://blackwinter.github.com/sinatra-bells
 Source code::   https://github.com/blackwinter/sinatra-bells
 RubyGem::       https://rubygems.org/gems/sinatra-bells
 

@@ -34,7 +34,29 @@ class Sinatra::Bells
 
     module Controller
 
+      def self.included(base)
+        error_code = Rack::Utils::HTTP_STATUS_CODES
+
+        base.class_eval {
+          [400, 401, 403, 404, 500].each { |code|
+            error(code) {
+              @code, @error = code, error_code[code]
+              render_error
+            }
+          }
+
+          [400, 401, 403].each { |code|
+            name = error_code[code].downcase.tr(' ', '_')
+            define_method(name) { |body = nil| error(code, body) }
+          }
+        }
+      end
+
       protected
+
+      def render_error
+        erb ''
+      end
 
       def send_file(file, options = {})
         options.is_a?(Hash) ? super :

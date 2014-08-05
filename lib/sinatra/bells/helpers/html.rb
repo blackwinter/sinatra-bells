@@ -39,6 +39,10 @@ class Sinatra::Bells
         _a(text, options.merge(href: uri(args.join('/'))))
       end
 
+      def link_to_if(condition, text, *args)
+        condition ? link_to(text, *args) : block_given? ? yield(text, *args) : text
+      end
+
       def _tag(name, *args)
         args.unshift('<', name, '>')
 
@@ -62,6 +66,14 @@ class Sinatra::Bells
 
       def _ul(list, *args)
         _tag(:ul, *args) { |tag| list.each { |*item| tag << yield(*item) } }
+      end
+
+      def active?(path)
+        'active' if request.path_info =~ /\A#{Regexp.escape(path)}(?:\/|\?|\z)/
+      end
+
+      def disabled?(condition)
+        'disabled' unless condition
       end
 
     end

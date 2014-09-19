@@ -61,12 +61,10 @@ module Sinatra
           template, render = render, settings.default_render
         end
 
-        dot = '.' unless path.end_with?('/')
-
         blocks = {}
 
-        render.each { |type, method|
-          super(verb, "#{path}#{dot}#{type}", options, &blocks[type] = lambda {
+        type_paths(render, path) { |type_path, type, method|
+          super(verb, type_path, options, &blocks[type] = lambda {
             content_type(type)
             instance_eval(&block)
             instance_eval(&method)
@@ -78,8 +76,21 @@ module Sinatra
           send(settings.default_renderer, template)
         }
 
+        blocks.each { |type, type_block|
+          super(verb, path, options.merge(provides: type), &type_block)
+        }
+      end
+
+      def type_paths(render, path)
+        path, re = path.source, path if path.is_a?(Regexp)
+        anchor = $& if re && path.sub!(/\\z|\$/i, '')
+
+        dot = '.' unless path.end_with?('/')
+        dot = Regexp.escape(dot) if dot && re
+
         render.each { |type, method|
-          super(verb, path, options.merge(provides: type), &blocks[type])
+          type_path = "#{path}#{dot}#{type}#{anchor}"
+          yield re ? Regexp.new(type_path, re.options) : type_path, type, method
         }
       end
 

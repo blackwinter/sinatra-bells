@@ -1,4 +1,4 @@
-require File.expand_path(%q{../lib/sinatra/bells/version}, __FILE__)
+require_relative 'lib/sinatra/bells/version'
 
 begin
   require 'hen'

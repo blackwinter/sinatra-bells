@@ -36,7 +36,16 @@ class Sinatra::Bells
 
       def link_to(text, *args)
         options = args.last.is_a?(Hash) ? args.pop : {}
-        _a(text, options.merge(href: uri(args.join('/'))))
+
+        href = uri(args.join('/'))
+
+        if params = options.delete(:params)
+          href << '?' << Array(params).map { |*param|
+            param.join('=')
+          }.join('&')
+        end
+
+        _a(text, options.merge(href: href))
       end
 
       def link_to_if(condition, text, *args)

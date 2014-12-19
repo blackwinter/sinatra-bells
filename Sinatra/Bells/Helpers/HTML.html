@@ -4,21 +4,18 @@
 <head>
 <meta charset="UTF-8">
 
-<title>module Sinatra::Bells::Helpers::HTML - sinatra-bells Application documentation (v0.0.1)</title>
-
-<link href="../../../fonts.css" rel="stylesheet">
-<link href="../../../rdoc.css" rel="stylesheet">
+<title>module Sinatra::Bells::Helpers::HTML - sinatra-bells Application documentation (v0.0.2)</title>
 
 <script type="text/javascript">
   var rdoc_rel_prefix = "../../../";
 </script>
 
 <script src="../../../js/jquery.js"></script>
-<script src="../../../js/navigation.js"></script>
-<script src="../../../js/search_index.js"></script>
-<script src="../../../js/search.js"></script>
-<script src="../../../js/searcher.js"></script>
 <script src="../../../js/darkfish.js"></script>
+
+<link href="../../../css/fonts.css" rel="stylesheet">
+<link href="../../../css/rdoc.css" rel="stylesheet">
+
 
 
 <body id="top" role="document" class="module">
@@ -74,7 +71,13 @@
     
     <li ><a href="#method-i-_ul">#_ul</a>
     
+    <li ><a href="#method-i-active-3F">#active?</a>
+    
+    <li ><a href="#method-i-disabled-3F">#disabled?</a>
+    
     <li ><a href="#method-i-link_to">#link_to</a>
+    
+    <li ><a href="#method-i-link_to_if">#link_to_if</a>
     
   </ul>
 </div>
@@ -129,7 +132,7 @@
 
           
           <div class="method-source-code" id="_a-source">
-            <pre><span class="ruby-comment"># File lib/sinatra/bells/helpers/html.rb, line 54</span>
+            <pre><span class="ruby-comment"># File lib/sinatra/bells/helpers/html.rb, line 72</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">_a</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">args</span>)
   <span class="ruby-identifier">_tag</span>(<span class="ruby-value">:a</span>, <span class="ruby-operator">*</span><span class="ruby-identifier">args</span>)
 <span class="ruby-keyword">end</span></pre>
@@ -162,7 +165,7 @@
 
           
           <div class="method-source-code" id="_li-source">
-            <pre><span class="ruby-comment"># File lib/sinatra/bells/helpers/html.rb, line 58</span>
+            <pre><span class="ruby-comment"># File lib/sinatra/bells/helpers/html.rb, line 76</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">_li</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">args</span>)
   <span class="ruby-identifier">_tag</span>(<span class="ruby-value">:li</span>, <span class="ruby-operator">*</span><span class="ruby-identifier">args</span>)
 <span class="ruby-keyword">end</span></pre>
@@ -195,7 +198,7 @@
 
           
           <div class="method-source-code" id="_tag-source">
-            <pre><span class="ruby-comment"># File lib/sinatra/bells/helpers/html.rb, line 41</span>
+            <pre><span class="ruby-comment"># File lib/sinatra/bells/helpers/html.rb, line 59</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">_tag</span>(<span class="ruby-identifier">name</span>, <span class="ruby-operator">*</span><span class="ruby-identifier">args</span>)
   <span class="ruby-identifier">args</span>.<span class="ruby-identifier">unshift</span>(<span class="ruby-string">&#39;&lt;&#39;</span>, <span class="ruby-identifier">name</span>, <span class="ruby-string">&#39;&gt;&#39;</span>)
 
@@ -237,9 +240,75 @@
 
           
           <div class="method-source-code" id="_ul-source">
-            <pre><span class="ruby-comment"># File lib/sinatra/bells/helpers/html.rb, line 62</span>
+            <pre><span class="ruby-comment"># File lib/sinatra/bells/helpers/html.rb, line 80</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">_ul</span>(<span class="ruby-identifier">list</span>, <span class="ruby-operator">*</span><span class="ruby-identifier">args</span>)
   <span class="ruby-identifier">_tag</span>(<span class="ruby-value">:ul</span>, <span class="ruby-operator">*</span><span class="ruby-identifier">args</span>) { <span class="ruby-operator">|</span><span class="ruby-identifier">tag</span><span class="ruby-operator">|</span> <span class="ruby-identifier">list</span>.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-operator">*</span><span class="ruby-identifier">item</span><span class="ruby-operator">|</span> <span class="ruby-identifier">tag</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-keyword">yield</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">item</span>) } }
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-active-3F" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">active?</span><span
+            class="method-args">(path)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="active-3F-source">
+            <pre><span class="ruby-comment"># File lib/sinatra/bells/helpers/html.rb, line 84</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">active?</span>(<span class="ruby-identifier">path</span>)
+  <span class="ruby-string">&#39;active&#39;</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">request</span>.<span class="ruby-identifier">path_info</span> <span class="ruby-operator">=~</span> <span class="ruby-node">/\A#{Regexp.escape(path)}(?:\/|\?|\z)/</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-disabled-3F" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">disabled?</span><span
+            class="method-args">(condition)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="disabled-3F-source">
+            <pre><span class="ruby-comment"># File lib/sinatra/bells/helpers/html.rb, line 88</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">disabled?</span>(<span class="ruby-identifier">condition</span>)
+  <span class="ruby-string">&#39;disabled&#39;</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">condition</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
           
@@ -270,10 +339,55 @@
 
           
           <div class="method-source-code" id="link_to-source">
-            <pre><span class="ruby-comment"># File lib/sinatra/bells/helpers/html.rb, line 36</span>
+            <pre><span class="ruby-comment"># File lib/sinatra/bells/helpers/html.rb, line 38</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">link_to</span>(<span class="ruby-identifier">text</span>, <span class="ruby-operator">*</span><span class="ruby-identifier">args</span>)
   <span class="ruby-identifier">options</span> = <span class="ruby-identifier">args</span>.<span class="ruby-identifier">last</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">Hash</span>) <span class="ruby-operator">?</span> <span class="ruby-identifier">args</span>.<span class="ruby-identifier">pop</span> <span class="ruby-operator">:</span> {}
-  <span class="ruby-identifier">_a</span>(<span class="ruby-identifier">text</span>, <span class="ruby-identifier">options</span>.<span class="ruby-identifier">merge</span>(<span class="ruby-identifier">href</span><span class="ruby-operator">:</span> <span class="ruby-identifier">uri</span>(<span class="ruby-identifier">args</span>.<span class="ruby-identifier">join</span>(<span class="ruby-string">&#39;/&#39;</span>))))
+
+  <span class="ruby-identifier">href</span> = <span class="ruby-identifier">uri</span>(<span class="ruby-identifier">args</span>.<span class="ruby-identifier">join</span>(<span class="ruby-string">&#39;/&#39;</span>))
+
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">params</span> = <span class="ruby-identifier">options</span>.<span class="ruby-identifier">delete</span>(<span class="ruby-value">:params</span>)
+    <span class="ruby-identifier">href</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-string">&#39;?&#39;</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-constant">Array</span>(<span class="ruby-identifier">params</span>).<span class="ruby-identifier">flat_map</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">key</span>, <span class="ruby-identifier">value</span><span class="ruby-operator">|</span>
+      <span class="ruby-identifier">key</span> = <span class="ruby-constant">CGI</span>.<span class="ruby-identifier">escape</span>(<span class="ruby-identifier">key</span>.<span class="ruby-identifier">to_s</span>)
+
+      <span class="ruby-identifier">value</span>.<span class="ruby-identifier">nil?</span> <span class="ruby-operator">?</span> <span class="ruby-identifier">key</span> <span class="ruby-operator">:</span> <span class="ruby-constant">Array</span>(<span class="ruby-identifier">value</span>)
+        .<span class="ruby-identifier">map</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">val</span><span class="ruby-operator">|</span> <span class="ruby-node">&quot;#{key}=#{CGI.escape(val.to_s)}&quot;</span> }
+    }.<span class="ruby-identifier">join</span>(<span class="ruby-string">&#39;&amp;&#39;</span>)
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-identifier">_a</span>(<span class="ruby-identifier">text</span>, <span class="ruby-identifier">options</span>.<span class="ruby-identifier">merge</span>(<span class="ruby-identifier">href</span><span class="ruby-operator">:</span> <span class="ruby-identifier">href</span>))
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-link_to_if" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">link_to_if</span><span
+            class="method-args">(condition, text, *args) { |text, *args| ... }</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="link_to_if-source">
+            <pre><span class="ruby-comment"># File lib/sinatra/bells/helpers/html.rb, line 55</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">link_to_if</span>(<span class="ruby-identifier">condition</span>, <span class="ruby-identifier">text</span>, <span class="ruby-operator">*</span><span class="ruby-identifier">args</span>)
+  <span class="ruby-identifier">condition</span> <span class="ruby-operator">?</span> <span class="ruby-identifier">link_to</span>(<span class="ruby-identifier">text</span>, <span class="ruby-operator">*</span><span class="ruby-identifier">args</span>) <span class="ruby-operator">:</span> <span class="ruby-identifier">block_given?</span> <span class="ruby-operator">?</span> <span class="ruby-keyword">yield</span>(<span class="ruby-identifier">text</span>, <span class="ruby-operator">*</span><span class="ruby-identifier">args</span>) <span class="ruby-operator">:</span> <span class="ruby-identifier">text</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
           
@@ -293,7 +407,7 @@
 
 <footer id="validator-badges" role="contentinfo">
   <p><a href="http://validator.w3.org/check/referer">Validate</a>
-  <p>Generated by <a href="http://rdoc.rubyforge.org">RDoc</a> 4.1.1.
-  <p>Based on <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+  <p>Generated by <a href="http://docs.seattlerb.org/rdoc/">RDoc</a> 4.2.0.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
 </footer>
 

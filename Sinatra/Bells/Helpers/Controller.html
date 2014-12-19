@@ -4,21 +4,18 @@
 <head>
 <meta charset="UTF-8">
 
-<title>module Sinatra::Bells::Helpers::Controller - sinatra-bells Application documentation (v0.0.1)</title>
-
-<link href="../../../fonts.css" rel="stylesheet">
-<link href="../../../rdoc.css" rel="stylesheet">
+<title>module Sinatra::Bells::Helpers::Controller - sinatra-bells Application documentation (v0.0.2)</title>
 
 <script type="text/javascript">
   var rdoc_rel_prefix = "../../../";
 </script>
 
 <script src="../../../js/jquery.js"></script>
-<script src="../../../js/navigation.js"></script>
-<script src="../../../js/search_index.js"></script>
-<script src="../../../js/search.js"></script>
-<script src="../../../js/searcher.js"></script>
 <script src="../../../js/darkfish.js"></script>
+
+<link href="../../../css/fonts.css" rel="stylesheet">
+<link href="../../../css/rdoc.css" rel="stylesheet">
+
 
 
 <body id="top" role="document" class="module">
@@ -66,6 +63,10 @@
 
   <ul class="link-list" role="directory">
     
+    <li ><a href="#method-c-included">::included</a>
+    
+    <li ><a href="#method-i-render_error">#render_error</a>
+    
     <li ><a href="#method-i-render_json">#render_json</a>
     
     <li class="calls-super" ><a href="#method-i-send_file">#send_file</a>
@@ -100,10 +101,98 @@
     
 
     
+     <section id="public-class-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Class Methods</h3>
+       </header>
+
+    
+      <div id="method-c-included" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">included</span><span
+            class="method-args">(base)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="included-source">
+            <pre><span class="ruby-comment"># File lib/sinatra/bells/helpers/controller.rb, line 36</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">included</span>(<span class="ruby-identifier">base</span>)
+  <span class="ruby-identifier">error_code</span> = <span class="ruby-constant">Rack</span><span class="ruby-operator">::</span><span class="ruby-constant">Utils</span><span class="ruby-operator">::</span><span class="ruby-constant">HTTP_STATUS_CODES</span>
+
+  <span class="ruby-identifier">base</span>.<span class="ruby-identifier">class_eval</span> {
+    [<span class="ruby-value">400</span>, <span class="ruby-value">401</span>, <span class="ruby-value">403</span>, <span class="ruby-value">404</span>, <span class="ruby-value">500</span>].<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">code</span><span class="ruby-operator">|</span>
+      <span class="ruby-identifier">error</span>(<span class="ruby-identifier">code</span>) {
+        <span class="ruby-ivar">@code</span>, <span class="ruby-ivar">@error</span> = <span class="ruby-identifier">code</span>, <span class="ruby-identifier">error_code</span>[<span class="ruby-identifier">code</span>]
+        <span class="ruby-identifier">render_error</span>
+      }
+    }
+
+    [<span class="ruby-value">400</span>, <span class="ruby-value">401</span>, <span class="ruby-value">403</span>].<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">code</span><span class="ruby-operator">|</span>
+      <span class="ruby-identifier">name</span> = <span class="ruby-identifier">error_code</span>[<span class="ruby-identifier">code</span>].<span class="ruby-identifier">downcase</span>.<span class="ruby-identifier">tr</span>(<span class="ruby-string">&#39; &#39;</span>, <span class="ruby-string">&#39;_&#39;</span>)
+      <span class="ruby-identifier">define_method</span>(<span class="ruby-identifier">name</span>) { <span class="ruby-operator">|</span><span class="ruby-identifier">body</span> = <span class="ruby-keyword">nil</span><span class="ruby-operator">|</span> <span class="ruby-identifier">error</span>(<span class="ruby-identifier">code</span>, <span class="ruby-identifier">body</span>) }
+    }
+  }
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
      <section id="protected-instance-5Buntitled-5D-method-details" class="method-section">
        <header>
          <h3>Protected Instance Methods</h3>
        </header>
+
+    
+      <div id="method-i-render_error" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">render_error</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="render_error-source">
+            <pre><span class="ruby-comment"># File lib/sinatra/bells/helpers/controller.rb, line 56</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">render_error</span>
+  <span class="ruby-identifier">erb</span> <span class="ruby-string">&#39;&#39;</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
 
     
       <div id="method-i-render_json" class="method-detail ">
@@ -125,7 +214,7 @@
 
           
           <div class="method-source-code" id="render_json-source">
-            <pre><span class="ruby-comment"># File lib/sinatra/bells/helpers/controller.rb, line 43</span>
+            <pre><span class="ruby-comment"># File lib/sinatra/bells/helpers/controller.rb, line 65</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">render_json</span>
   <span class="ruby-constant">JSON</span>.<span class="ruby-identifier">fast_generate</span>(<span class="ruby-identifier">to_render_hash</span>)
 <span class="ruby-keyword">end</span></pre>
@@ -163,7 +252,7 @@
 
           
           <div class="method-source-code" id="send_file-source">
-            <pre><span class="ruby-comment"># File lib/sinatra/bells/helpers/controller.rb, line 38</span>
+            <pre><span class="ruby-comment"># File lib/sinatra/bells/helpers/controller.rb, line 60</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">send_file</span>(<span class="ruby-identifier">file</span>, <span class="ruby-identifier">options</span> = {})
   <span class="ruby-identifier">options</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">Hash</span>) <span class="ruby-operator">?</span> <span class="ruby-keyword">super</span> <span class="ruby-operator">:</span>
     <span class="ruby-constant">File</span>.<span class="ruby-identifier">readable?</span>(<span class="ruby-identifier">file</span>) <span class="ruby-operator">?</span> <span class="ruby-keyword">super</span>(<span class="ruby-identifier">file</span>, <span class="ruby-identifier">type</span><span class="ruby-operator">:</span> <span class="ruby-identifier">options</span>) <span class="ruby-operator">:</span> <span class="ruby-identifier">not_found</span>
@@ -205,7 +294,7 @@
 
           
           <div class="method-source-code" id="to_render_hash-source">
-            <pre><span class="ruby-comment"># File lib/sinatra/bells/helpers/controller.rb, line 49</span>
+            <pre><span class="ruby-comment"># File lib/sinatra/bells/helpers/controller.rb, line 71</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">to_render_hash</span>(<span class="ruby-identifier">hash</span> = {}, <span class="ruby-identifier">compact</span> = <span class="ruby-keyword">true</span>)
   <span class="ruby-keyword">if</span> <span class="ruby-identifier">hash</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">Array</span>)
     <span class="ruby-identifier">ary</span>, <span class="ruby-identifier">hash</span>, <span class="ruby-identifier">at</span> = <span class="ruby-identifier">hash</span>, {}, <span class="ruby-string">&#39;@&#39;</span>
@@ -234,7 +323,7 @@
 
 <footer id="validator-badges" role="contentinfo">
   <p><a href="http://validator.w3.org/check/referer">Validate</a>
-  <p>Generated by <a href="http://rdoc.rubyforge.org">RDoc</a> 4.1.1.
-  <p>Based on <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+  <p>Generated by <a href="http://docs.seattlerb.org/rdoc/">RDoc</a> 4.2.0.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
 </footer>
 

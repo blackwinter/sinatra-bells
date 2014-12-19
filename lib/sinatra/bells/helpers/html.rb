@@ -26,6 +26,8 @@
 ###############################################################################
 #++
 
+require 'cgi'
+
 class Sinatra::Bells
 
   module Helpers
@@ -40,8 +42,11 @@ class Sinatra::Bells
         href = uri(args.join('/'))
 
         if params = options.delete(:params)
-          href << '?' << Array(params).map { |*param|
-            param.join('=')
+          href << '?' << Array(params).flat_map { |key, value|
+            key = CGI.escape(key.to_s)
+
+            value.nil? ? key : Array(value)
+              .map { |val| "#{key}=#{CGI.escape(val.to_s)}" }
           }.join('&')
         end
 

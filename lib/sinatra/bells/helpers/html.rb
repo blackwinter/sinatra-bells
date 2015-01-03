@@ -50,6 +50,10 @@ class Sinatra::Bells
           }.join('&')
         end
 
+        if anchor = options.delete(:anchor)
+          href << '#' << anchor.to_s
+        end
+
         _a(text, options.merge(href: href))
       end
 

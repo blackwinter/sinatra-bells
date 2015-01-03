@@ -51,7 +51,7 @@ class Sinatra::Bells
         end
 
         if anchor = options.delete(:anchor)
-          href << '#' << anchor.to_s
+          href << '#' << CGI.escape(anchor.to_s)
         end
 
         _a(text, options.merge(href: href))

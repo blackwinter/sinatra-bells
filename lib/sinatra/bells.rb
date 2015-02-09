@@ -46,6 +46,12 @@ module Sinatra
         super(option, *args, &nil)
       end
 
+      def set_hash(opt, ary, suf = nil, &block)
+        (a, b = suf; ary.map! { |i| %W[#{i}#{a} #{i}#{b}] }) if suf
+        ary.map!(&block) if block
+        set(opt, Hash[ary])
+      end
+
       def set_root(file)
         set(:root, file.chomp(File.extname(file)))
       end

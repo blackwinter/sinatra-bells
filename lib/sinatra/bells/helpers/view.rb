@@ -5,7 +5,7 @@
 #                                                                             #
 # sinatra-bells -- Sinatra with some more bells and whistles                  #
 #                                                                             #
-# Copyright (C) 2014 Jens Wille                                               #
+# Copyright (C) 2014-2015 Jens Wille                                          #
 #                                                                             #
 # Authors:                                                                    #
 #     Jens Wille <jens.wille@gmail.com>                                       #
@@ -32,7 +32,19 @@ class Sinatra::Bells
 
   module Helpers
 
-    module HTML
+    module View
+
+      LABEL_FORMAT_RE = %r{
+        \{
+          ( \w+ )               # field
+          (?: \( ( .*? ) \) )?  # separator
+          (?: : ( .*? ) )?      # format string
+        \}
+      }x.freeze
+
+      DEFAULT_FORMAT = '%s'.freeze
+
+      DEFAULT_SEPARATOR = '; '.freeze
 
       protected
 
@@ -92,6 +104,18 @@ class Sinatra::Bells
 
       def disabled?(condition)
         'disabled' unless condition
+      end
+
+      def format_label(label, hash = nil, &block)
+        hash ||= block
+
+        label.gsub(LABEL_FORMAT_RE) {
+          field, separator, format =
+            $1, $2 || DEFAULT_SEPARATOR, $3 || DEFAULT_FORMAT
+
+          value = Array(hash[field]).map(&:to_s).delete_if(&:empty?)
+          format % [value.join(separator), field] unless value.empty?
+        }
       end
 
     end

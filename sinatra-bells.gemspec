@@ -1,22 +1,22 @@
 # -*- encoding: utf-8 -*-
-# stub: sinatra-bells 0.0.2 ruby lib
+# stub: sinatra-bells 0.0.3 ruby lib
 
 Gem::Specification.new do |s|
   s.name = "sinatra-bells"
-  s.version = "0.0.2"
+  s.version = "0.0.3"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.require_paths = ["lib"]
   s.authors = ["Jens Wille"]
-  s.date = "2014-12-19"
+  s.date = "2015-02-11"
   s.description = "Extends Sinatra with some convenience shortcuts."
   s.email = "jens.wille@gmail.com"
   s.extra_rdoc_files = ["README", "COPYING", "ChangeLog"]
-  s.files = ["COPYING", "ChangeLog", "README", "Rakefile", "lib/sinatra-bells.rb", "lib/sinatra/bells.rb", "lib/sinatra/bells/helpers.rb", "lib/sinatra/bells/helpers/controller.rb", "lib/sinatra/bells/helpers/html.rb", "lib/sinatra/bells/version.rb"]
+  s.files = ["COPYING", "ChangeLog", "README", "Rakefile", "lib/sinatra-bells.rb", "lib/sinatra/bells.rb", "lib/sinatra/bells/helpers.rb", "lib/sinatra/bells/helpers/controller.rb", "lib/sinatra/bells/helpers/view.rb", "lib/sinatra/bells/version.rb"]
   s.homepage = "http://github.com/blackwinter/sinatra-bells"
   s.licenses = ["AGPL-3.0"]
-  s.post_install_message = "\nsinatra-bells-0.0.2 [2014-12-19]:\n\n* Sinatra::Bells::Helpers::Controller installs default error handlers.\n* Added Sinatra::Bells::Helpers::HTML#link_to_if.\n* Added Sinatra::Bells::Helpers::HTML#disabled?.\n* Added Sinatra::Bells::Helpers::HTML#active?.\n* Extended Sinatra::Bells#route to handle regexp paths.\n* Extended Sinatra::Bells::Helpers::HTML#link_to to accept query params.\n\n"
-  s.rdoc_options = ["--title", "sinatra-bells Application documentation (v0.0.2)", "--charset", "UTF-8", "--line-numbers", "--all", "--main", "README"]
+  s.post_install_message = "\nsinatra-bells-0.0.3 [2015-02-11]:\n\n* Renamed Sinatra::Bells::Helpers::HTML to Sinatra::Bells::Helpers::View.\n* Extended Sinatra::Bells::Helpers::View#link_to to accept an anchor.\n* Added Sinatra::Bells::Helpers::View#format_label.\n* Added Sinatra::Bells.set_hash.\n\n"
+  s.rdoc_options = ["--title", "sinatra-bells Application documentation (v0.0.3)", "--charset", "UTF-8", "--line-numbers", "--all", "--main", "README"]
   s.required_ruby_version = Gem::Requirement.new(">= 1.9.3")
   s.rubygems_version = "2.4.5"
   s.summary = "Sinatra with some more bells and whistles."

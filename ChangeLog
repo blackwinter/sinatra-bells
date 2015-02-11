@@ -2,13 +2,20 @@
 
 = Revision history for sinatra-bells
 
+== 0.0.3 [2015-02-11]
+
+* Renamed Sinatra::Bells::Helpers::HTML to Sinatra::Bells::Helpers::View.
+* Extended Sinatra::Bells::Helpers::View#link_to to accept an anchor.
+* Added Sinatra::Bells::Helpers::View#format_label.
+* Added Sinatra::Bells.set_hash.
+
 == 0.0.2 [2014-12-19]
 
 * Sinatra::Bells::Helpers::Controller installs default error handlers.
 * Added Sinatra::Bells::Helpers::HTML#link_to_if.
 * Added Sinatra::Bells::Helpers::HTML#disabled?.
 * Added Sinatra::Bells::Helpers::HTML#active?.
-* Extended Sinatra::Bells#route to handle regexp paths.
+* Extended Sinatra::Bells.route to handle regexp paths.
 * Extended Sinatra::Bells::Helpers::HTML#link_to to accept query params.
 
 == 0.0.1 [2014-04-14]

@@ -5,7 +5,7 @@
 #                                                                             #
 # sinatra-bells -- Sinatra with some more bells and whistles                  #
 #                                                                             #
-# Copyright (C) 2014 Jens Wille                                               #
+# Copyright (C) 2014-2015 Jens Wille                                          #
 #                                                                             #
 # Authors:                                                                    #
 #     Jens Wille <jens.wille@gmail.com>                                       #
@@ -27,7 +27,7 @@
 #++
 
 require_relative 'helpers/controller'
-require_relative 'helpers/html'
+require_relative 'helpers/view'
 
 class Sinatra::Bells
   helpers ERB::Util, *Helpers.constants.map { |mod| Helpers.const_get(mod) }

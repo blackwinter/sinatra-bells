@@ -4,7 +4,7 @@
 <head>
 <meta charset="UTF-8">
 
-<title>class Sinatra::Bells - sinatra-bells Application documentation (v0.0.2)</title>
+<title>class Sinatra::Bells - sinatra-bells Application documentation (v0.0.3)</title>
 
 <script type="text/javascript">
   var rdoc_rel_prefix = "../";
@@ -73,6 +73,8 @@
     <li class="calls-super" ><a href="#method-c-route">::route</a>
     
     <li class="calls-super" ><a href="#method-c-set">::set</a>
+    
+    <li ><a href="#method-c-set_hash">::set_hash</a>
     
     <li ><a href="#method-c-set_root">::set_root</a>
     
@@ -172,6 +174,41 @@
       </div>
 
     
+      <div id="method-c-set_hash" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">set_hash</span><span
+            class="method-args">(opt, ary, suf = nil, &block)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="set_hash-source">
+            <pre><span class="ruby-comment"># File lib/sinatra/bells.rb, line 48</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">set_hash</span>(<span class="ruby-identifier">opt</span>, <span class="ruby-identifier">ary</span>, <span class="ruby-identifier">suf</span> = <span class="ruby-keyword">nil</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)
+  (<span class="ruby-identifier">a</span>, <span class="ruby-identifier">b</span> = <span class="ruby-identifier">suf</span>; <span class="ruby-identifier">ary</span>.<span class="ruby-identifier">map!</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">i</span><span class="ruby-operator">|</span> <span class="ruby-node">%W[#{i}#{a} #{i}#{b}]</span> }) <span class="ruby-keyword">if</span> <span class="ruby-identifier">suf</span>
+  <span class="ruby-identifier">ary</span>.<span class="ruby-identifier">map!</span>(<span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>) <span class="ruby-keyword">if</span> <span class="ruby-identifier">block</span>
+  <span class="ruby-identifier">set</span>(<span class="ruby-identifier">opt</span>, <span class="ruby-constant">Hash</span>[<span class="ruby-identifier">ary</span>])
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
       <div id="method-c-set_root" class="method-detail ">
         
         <div class="method-heading">
@@ -191,7 +228,7 @@
 
           
           <div class="method-source-code" id="set_root-source">
-            <pre><span class="ruby-comment"># File lib/sinatra/bells.rb, line 48</span>
+            <pre><span class="ruby-comment"># File lib/sinatra/bells.rb, line 54</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">set_root</span>(<span class="ruby-identifier">file</span>)
   <span class="ruby-identifier">set</span>(<span class="ruby-value">:root</span>, <span class="ruby-identifier">file</span>.<span class="ruby-identifier">chomp</span>(<span class="ruby-constant">File</span>.<span class="ruby-identifier">extname</span>(<span class="ruby-identifier">file</span>)))
 <span class="ruby-keyword">end</span></pre>
@@ -237,7 +274,7 @@
 
           
           <div class="method-source-code" id="route-source">
-            <pre><span class="ruby-comment"># File lib/sinatra/bells.rb, line 54</span>
+            <pre><span class="ruby-comment"># File lib/sinatra/bells.rb, line 60</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">route</span>(<span class="ruby-identifier">verb</span>, <span class="ruby-identifier">path</span>, <span class="ruby-identifier">options</span> = {}, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)
   <span class="ruby-keyword">return</span> <span class="ruby-keyword">super</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">render</span> = <span class="ruby-identifier">options</span>.<span class="ruby-identifier">delete</span>(<span class="ruby-value">:render</span>)
 
@@ -295,7 +332,7 @@
 
           
           <div class="method-source-code" id="type_paths-source">
-            <pre><span class="ruby-comment"># File lib/sinatra/bells.rb, line 83</span>
+            <pre><span class="ruby-comment"># File lib/sinatra/bells.rb, line 89</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">type_paths</span>(<span class="ruby-identifier">render</span>, <span class="ruby-identifier">path</span>)
   <span class="ruby-identifier">path</span>, <span class="ruby-identifier">re</span> = <span class="ruby-identifier">path</span>.<span class="ruby-identifier">source</span>, <span class="ruby-identifier">path</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">path</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">Regexp</span>)
   <span class="ruby-identifier">anchor</span> = <span class="ruby-node">$&amp;</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">re</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">path</span>.<span class="ruby-identifier">sub!</span>(<span class="ruby-regexp">/\z|\$/i</span>, <span class="ruby-string">&#39;&#39;</span>)

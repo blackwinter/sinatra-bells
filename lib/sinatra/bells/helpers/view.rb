@@ -66,14 +66,14 @@ class Sinatra::Bells
           href << '#' << CGI.escape(anchor.to_s)
         end
 
-        _a(text, options.merge(href: href))
+        a_(text, options.merge(href: href))
       end
 
       def link_to_if(condition, text, *args)
         condition ? link_to(text, *args) : block_given? ? yield(text, *args) : text
       end
 
-      def _tag(name, *args)
+      def tag_(name, *args)
         args.unshift('<', name, '>')
 
         if args.last.is_a?(Hash)
@@ -86,16 +86,16 @@ class Sinatra::Bells
         args.push('</', name, '>').join
       end
 
-      def _a(*args)
-        _tag(:a, *args)
+      def a_(*args)
+        tag_(:a, *args)
       end
 
-      def _li(*args)
-        _tag(:li, *args)
+      def li_(*args)
+        tag_(:li, *args)
       end
 
-      def _ul(list, *args)
-        _tag(:ul, *args) { |tag| list.each { |*item| tag << yield(*item) } }
+      def ul_(list, *args)
+        tag_(:ul, *args) { |tag| list.each { |*item| tag << yield(*item) } }
       end
 
       def active?(path)

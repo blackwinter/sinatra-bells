@@ -2,6 +2,11 @@
 
 = Revision history for sinatra-bells
 
+== 0.0.4 [unreleased]
+
+* Changed Sinatra::Bells::Helpers::View method names from <tt>_<tag></tt> to
+  <tt><tag>_</tt>.
+
 == 0.0.3 [2015-02-11]
 
 * Renamed Sinatra::Bells::Helpers::HTML to Sinatra::Bells::Helpers::View.

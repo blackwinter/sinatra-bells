@@ -4,7 +4,7 @@
 <head>
 <meta charset="UTF-8">
 
-<title>module Sinatra::Bells::Helpers::View - sinatra-bells Application documentation (v0.0.3)</title>
+<title>module Sinatra::Bells::Helpers::View - sinatra-bells Application documentation (v0.1.0)</title>
 
 <script type="text/javascript">
   var rdoc_rel_prefix = "../../../";
@@ -63,13 +63,7 @@
 
   <ul class="link-list" role="directory">
     
-    <li ><a href="#method-i-_a">#_a</a>
-    
-    <li ><a href="#method-i-_li">#_li</a>
-    
-    <li ><a href="#method-i-_tag">#_tag</a>
-    
-    <li ><a href="#method-i-_ul">#_ul</a>
+    <li ><a href="#method-i-a_">#a_</a>
     
     <li ><a href="#method-i-active-3F">#active?</a>
     
@@ -77,9 +71,15 @@
     
     <li ><a href="#method-i-format_label">#format_label</a>
     
+    <li ><a href="#method-i-li_">#li_</a>
+    
     <li ><a href="#method-i-link_to">#link_to</a>
     
     <li ><a href="#method-i-link_to_if">#link_to_if</a>
+    
+    <li ><a href="#method-i-tag_">#tag_</a>
+    
+    <li ><a href="#method-i-ul_">#ul_</a>
     
   </ul>
 </div>
@@ -139,10 +139,10 @@
        </header>
 
     
-      <div id="method-i-_a" class="method-detail ">
+      <div id="method-i-a_" class="method-detail ">
         
         <div class="method-heading">
-          <span class="method-name">_a</span><span
+          <span class="method-name">a_</span><span
             class="method-args">(*args)</span>
           
           <span class="method-click-advice">click to toggle source</span>
@@ -157,118 +157,10 @@
           
 
           
-          <div class="method-source-code" id="_a-source">
+          <div class="method-source-code" id="a_-source">
             <pre><span class="ruby-comment"># File lib/sinatra/bells/helpers/view.rb, line 88</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">_a</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">args</span>)
-  <span class="ruby-identifier">_tag</span>(<span class="ruby-value">:a</span>, <span class="ruby-operator">*</span><span class="ruby-identifier">args</span>)
-<span class="ruby-keyword">end</span></pre>
-          </div>
-          
-        </div>
-
-        
-
-        
-      </div>
-
-    
-      <div id="method-i-_li" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">_li</span><span
-            class="method-args">(*args)</span>
-          
-          <span class="method-click-advice">click to toggle source</span>
-          
-        </div>
-        
-
-        <div class="method-description">
-          
-          
-          
-          
-
-          
-          <div class="method-source-code" id="_li-source">
-            <pre><span class="ruby-comment"># File lib/sinatra/bells/helpers/view.rb, line 92</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">_li</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">args</span>)
-  <span class="ruby-identifier">_tag</span>(<span class="ruby-value">:li</span>, <span class="ruby-operator">*</span><span class="ruby-identifier">args</span>)
-<span class="ruby-keyword">end</span></pre>
-          </div>
-          
-        </div>
-
-        
-
-        
-      </div>
-
-    
-      <div id="method-i-_tag" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">_tag</span><span
-            class="method-args">(name, *args) { |args| ... }</span>
-          
-          <span class="method-click-advice">click to toggle source</span>
-          
-        </div>
-        
-
-        <div class="method-description">
-          
-          
-          
-          
-
-          
-          <div class="method-source-code" id="_tag-source">
-            <pre><span class="ruby-comment"># File lib/sinatra/bells/helpers/view.rb, line 75</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">_tag</span>(<span class="ruby-identifier">name</span>, <span class="ruby-operator">*</span><span class="ruby-identifier">args</span>)
-  <span class="ruby-identifier">args</span>.<span class="ruby-identifier">unshift</span>(<span class="ruby-string">&#39;&lt;&#39;</span>, <span class="ruby-identifier">name</span>, <span class="ruby-string">&#39;&gt;&#39;</span>)
-
-  <span class="ruby-keyword">if</span> <span class="ruby-identifier">args</span>.<span class="ruby-identifier">last</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">Hash</span>)
-    <span class="ruby-identifier">attr</span> = <span class="ruby-identifier">args</span>.<span class="ruby-identifier">pop</span>.<span class="ruby-identifier">map</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">k</span>, <span class="ruby-identifier">v</span><span class="ruby-operator">|</span> <span class="ruby-node">%Q{#{h(k)}=&quot;#{h(v)}&quot;}</span> }
-    <span class="ruby-identifier">args</span>.<span class="ruby-identifier">insert</span>(<span class="ruby-value">2</span>, <span class="ruby-string">&#39; &#39;</span>, <span class="ruby-identifier">attr</span>.<span class="ruby-identifier">join</span>(<span class="ruby-string">&#39; &#39;</span>)) <span class="ruby-keyword">unless</span> <span class="ruby-identifier">attr</span>.<span class="ruby-identifier">empty?</span>
-  <span class="ruby-keyword">end</span>
-
-  <span class="ruby-keyword">yield</span> <span class="ruby-identifier">args</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">block_given?</span>
-
-  <span class="ruby-identifier">args</span>.<span class="ruby-identifier">push</span>(<span class="ruby-string">&#39;&lt;/&#39;</span>, <span class="ruby-identifier">name</span>, <span class="ruby-string">&#39;&gt;&#39;</span>).<span class="ruby-identifier">join</span>
-<span class="ruby-keyword">end</span></pre>
-          </div>
-          
-        </div>
-
-        
-
-        
-      </div>
-
-    
-      <div id="method-i-_ul" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">_ul</span><span
-            class="method-args">(list, *args) { |*item| ... }</span>
-          
-          <span class="method-click-advice">click to toggle source</span>
-          
-        </div>
-        
-
-        <div class="method-description">
-          
-          
-          
-          
-
-          
-          <div class="method-source-code" id="_ul-source">
-            <pre><span class="ruby-comment"># File lib/sinatra/bells/helpers/view.rb, line 96</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">_ul</span>(<span class="ruby-identifier">list</span>, <span class="ruby-operator">*</span><span class="ruby-identifier">args</span>)
-  <span class="ruby-identifier">_tag</span>(<span class="ruby-value">:ul</span>, <span class="ruby-operator">*</span><span class="ruby-identifier">args</span>) { <span class="ruby-operator">|</span><span class="ruby-identifier">tag</span><span class="ruby-operator">|</span> <span class="ruby-identifier">list</span>.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-operator">*</span><span class="ruby-identifier">item</span><span class="ruby-operator">|</span> <span class="ruby-identifier">tag</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-keyword">yield</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">item</span>) } }
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">a_</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">args</span>)
+  <span class="ruby-identifier">tag_</span>(<span class="ruby-value">:a</span>, <span class="ruby-operator">*</span><span class="ruby-identifier">args</span>)
 <span class="ruby-keyword">end</span></pre>
           </div>
           
@@ -387,6 +279,39 @@
       </div>
 
     
+      <div id="method-i-li_" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">li_</span><span
+            class="method-args">(*args)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="li_-source">
+            <pre><span class="ruby-comment"># File lib/sinatra/bells/helpers/view.rb, line 92</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">li_</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">args</span>)
+  <span class="ruby-identifier">tag_</span>(<span class="ruby-value">:li</span>, <span class="ruby-operator">*</span><span class="ruby-identifier">args</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
       <div id="method-i-link_to" class="method-detail ">
         
         <div class="method-heading">
@@ -425,7 +350,7 @@
     <span class="ruby-identifier">href</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-string">&#39;#&#39;</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-constant">CGI</span>.<span class="ruby-identifier">escape</span>(<span class="ruby-identifier">anchor</span>.<span class="ruby-identifier">to_s</span>)
   <span class="ruby-keyword">end</span>
 
-  <span class="ruby-identifier">_a</span>(<span class="ruby-identifier">text</span>, <span class="ruby-identifier">options</span>.<span class="ruby-identifier">merge</span>(<span class="ruby-identifier">href</span><span class="ruby-operator">:</span> <span class="ruby-identifier">href</span>))
+  <span class="ruby-identifier">a_</span>(<span class="ruby-identifier">text</span>, <span class="ruby-identifier">options</span>.<span class="ruby-identifier">merge</span>(<span class="ruby-identifier">href</span><span class="ruby-operator">:</span> <span class="ruby-identifier">href</span>))
 <span class="ruby-keyword">end</span></pre>
           </div>
           
@@ -459,6 +384,81 @@
             <pre><span class="ruby-comment"># File lib/sinatra/bells/helpers/view.rb, line 71</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">link_to_if</span>(<span class="ruby-identifier">condition</span>, <span class="ruby-identifier">text</span>, <span class="ruby-operator">*</span><span class="ruby-identifier">args</span>)
   <span class="ruby-identifier">condition</span> <span class="ruby-operator">?</span> <span class="ruby-identifier">link_to</span>(<span class="ruby-identifier">text</span>, <span class="ruby-operator">*</span><span class="ruby-identifier">args</span>) <span class="ruby-operator">:</span> <span class="ruby-identifier">block_given?</span> <span class="ruby-operator">?</span> <span class="ruby-keyword">yield</span>(<span class="ruby-identifier">text</span>, <span class="ruby-operator">*</span><span class="ruby-identifier">args</span>) <span class="ruby-operator">:</span> <span class="ruby-identifier">text</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-tag_" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">tag_</span><span
+            class="method-args">(name, *args) { |args| ... }</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="tag_-source">
+            <pre><span class="ruby-comment"># File lib/sinatra/bells/helpers/view.rb, line 75</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">tag_</span>(<span class="ruby-identifier">name</span>, <span class="ruby-operator">*</span><span class="ruby-identifier">args</span>)
+  <span class="ruby-identifier">args</span>.<span class="ruby-identifier">unshift</span>(<span class="ruby-string">&#39;&lt;&#39;</span>, <span class="ruby-identifier">name</span>, <span class="ruby-string">&#39;&gt;&#39;</span>)
+
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">args</span>.<span class="ruby-identifier">last</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">Hash</span>)
+    <span class="ruby-identifier">attr</span> = <span class="ruby-identifier">args</span>.<span class="ruby-identifier">pop</span>.<span class="ruby-identifier">map</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">k</span>, <span class="ruby-identifier">v</span><span class="ruby-operator">|</span> <span class="ruby-node">%Q{#{h(k)}=&quot;#{h(v)}&quot;}</span> }
+    <span class="ruby-identifier">args</span>.<span class="ruby-identifier">insert</span>(<span class="ruby-value">2</span>, <span class="ruby-string">&#39; &#39;</span>, <span class="ruby-identifier">attr</span>.<span class="ruby-identifier">join</span>(<span class="ruby-string">&#39; &#39;</span>)) <span class="ruby-keyword">unless</span> <span class="ruby-identifier">attr</span>.<span class="ruby-identifier">empty?</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-keyword">yield</span> <span class="ruby-identifier">args</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">block_given?</span>
+
+  <span class="ruby-identifier">args</span>.<span class="ruby-identifier">push</span>(<span class="ruby-string">&#39;&lt;/&#39;</span>, <span class="ruby-identifier">name</span>, <span class="ruby-string">&#39;&gt;&#39;</span>).<span class="ruby-identifier">join</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-ul_" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">ul_</span><span
+            class="method-args">(list, *args) { |*item| ... }</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="ul_-source">
+            <pre><span class="ruby-comment"># File lib/sinatra/bells/helpers/view.rb, line 96</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">ul_</span>(<span class="ruby-identifier">list</span>, <span class="ruby-operator">*</span><span class="ruby-identifier">args</span>)
+  <span class="ruby-identifier">tag_</span>(<span class="ruby-value">:ul</span>, <span class="ruby-operator">*</span><span class="ruby-identifier">args</span>) { <span class="ruby-operator">|</span><span class="ruby-identifier">tag</span><span class="ruby-operator">|</span> <span class="ruby-identifier">list</span>.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-operator">*</span><span class="ruby-identifier">item</span><span class="ruby-operator">|</span> <span class="ruby-identifier">tag</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-keyword">yield</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">item</span>) } }
 <span class="ruby-keyword">end</span></pre>
           </div>
           

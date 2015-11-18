@@ -2,6 +2,12 @@
 
 = Revision history for sinatra-bells
 
+== 0.2.0 [2015-11-18]
+
+* Added shortcuts for all HTML elements to Sinatra::Bells::Helpers::View.
+* Added Sinatra::Bells.set_defer.
+* Added Sinatra::Bells.set_async.
+
 == 0.1.0 [2015-10-02]
 
 * Changed Sinatra::Bells::Helpers::View method names from <tt>_<tag></tt> to

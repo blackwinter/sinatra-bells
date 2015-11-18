@@ -5,7 +5,7 @@
 #                                                                             #
 # sinatra-bells -- Sinatra with some more bells and whistles                  #
 #                                                                             #
-# Copyright (C) 2014 Jens Wille                                               #
+# Copyright (C) 2014-2015 Jens Wille                                          #
 #                                                                             #
 # Authors:                                                                    #
 #     Jens Wille <jens.wille@gmail.com>                                       #
@@ -35,15 +35,13 @@ module Sinatra
     class << self
 
       def set(option, *args, &block)
-        if block
-          args[0] = lambda {
-            value = instance_eval(&block)
-            set(option, value)
-            value
-          }
-        end
+        block ? !args.empty? ?
+          raise(ArgumentError, 'both block and arguments given') :
+          set_defer(option, &block) : super(option, *args, &nil)
+      end
 
-        super(option, *args, &nil)
+      def set_defer(option, &block)
+        set(option, lambda { set(option, value = instance_eval(&block)); value })
       end
 
       def set_hash(opt, ary, suf = nil, &block)

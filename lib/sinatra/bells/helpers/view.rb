@@ -46,6 +46,52 @@ class Sinatra::Bells
 
       DEFAULT_SEPARATOR = '; '.freeze
 
+      HTML_ELEMENTS = %w[
+        a abbr address area article aside audio b base bdi bdo blockquote body
+        br button canvas caption cite code col colgroup command content datalist
+        decorator del details dfn dialog div dl element em embed fieldset
+        figcaption figure footer form h1 h2 h3 h4 h5 h6 head header hr html i
+        iframe img input ins kbd keygen label legend li link main map mark math
+        menu menuitem meta meter nav noscript object optgroup option output p
+        param picture pre progress q rp rt ruby s samp script section select
+        shadow small source span strong style sub summary sup svg table tbody td
+        template textarea tfoot th thead time title tr track u var video wbr
+      ].freeze
+
+      LIST_ELEMENTS = %w[ol ul].freeze
+
+      class << self
+
+        def define_html_tag_method(*names)
+          names.each { |name|
+            class_eval <<-EOT, __FILE__, __LINE__ + 1
+              def #{name}_(*args, &block)
+                tag_(#{name.inspect}, *args, &block)
+              end
+            EOT
+          }
+        end
+
+        def define_list_tag_method(*names)
+          names.each { |name|
+            class_eval <<-EOT, __FILE__, __LINE__ + 1
+              def #{name}_(*args, &block)
+                if args.first.respond_to?(:each)
+                  raise ArgumentError, 'no block given' unless block
+
+                  list, block_, block = args.shift, block, lambda { |tag|
+                    list.each { |*item| tag << li_(*block_[*item]) }
+                  }
+                end
+
+                tag_(#{name.inspect}, *args, &block)
+              end
+            EOT
+          }
+        end
+
+      end
+
       protected
 
       def link_to(text, *args)
@@ -86,17 +132,8 @@ class Sinatra::Bells
         args.push('</', name, '>').join
       end
 
-      def a_(*args)
-        tag_(:a, *args)
-      end
-
-      def li_(*args)
-        tag_(:li, *args)
-      end
-
-      def ul_(list, *args)
-        tag_(:ul, *args) { |tag| list.each { |*item| tag << yield(*item) } }
-      end
+      define_html_tag_method(*HTML_ELEMENTS)
+      define_list_tag_method(*LIST_ELEMENTS)
 
       def active?(path)
         'active' if request.path_info =~ /\A#{Regexp.escape(path)}(?:\/|\?|\z)/

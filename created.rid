@@ -1,10 +1,10 @@
-Fri, 02 Oct 2015 13:02:14 +0200
-README	Fri, 02 Oct 2015 13:00:23 +0200
+Wed, 18 Nov 2015 12:41:32 +0100
+README	Wed, 18 Nov 2015 12:36:35 +0100
 COPYING	Mon, 14 Apr 2014 12:10:38 +0200
-ChangeLog	Fri, 02 Oct 2015 13:00:43 +0200
+ChangeLog	Wed, 18 Nov 2015 12:38:27 +0100
 lib/sinatra-bells.rb	Mon, 14 Apr 2014 12:14:07 +0200
-lib/sinatra/bells.rb	Tue, 24 Feb 2015 15:59:47 +0100
+lib/sinatra/bells.rb	Wed, 18 Nov 2015 12:00:15 +0100
 lib/sinatra/bells/helpers.rb	Wed, 11 Feb 2015 13:44:50 +0100
-lib/sinatra/bells/version.rb	Fri, 02 Oct 2015 13:01:29 +0200
-lib/sinatra/bells/helpers/view.rb	Thu, 19 Feb 2015 12:11:23 +0100
+lib/sinatra/bells/version.rb	Wed, 18 Nov 2015 11:56:36 +0100
+lib/sinatra/bells/helpers/view.rb	Wed, 18 Nov 2015 12:34:59 +0100
 lib/sinatra/bells/helpers/controller.rb	Wed, 28 May 2014 12:35:39 +0200

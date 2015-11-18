@@ -44,6 +44,11 @@ module Sinatra
         set(option, lambda { set(option, value = instance_eval(&block)); value })
       end
 
+      def set_async(option, &block)
+        thread = Thread.new(&block)
+        set_defer(option) { thread.value }
+      end
+
       def set_hash(opt, ary, suf = nil, &block)
         (a, b = suf; ary.map! { |i| %W[#{i}#{a} #{i}#{b}] }) if suf
         ary.map!(&block) if block

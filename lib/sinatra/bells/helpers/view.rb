@@ -5,7 +5,7 @@
 #                                                                             #
 # sinatra-bells -- Sinatra with some more bells and whistles                  #
 #                                                                             #
-# Copyright (C) 2014-2015 Jens Wille                                          #
+# Copyright (C) 2014-2016 Jens Wille                                          #
 #                                                                             #
 # Authors:                                                                    #
 #     Jens Wille <jens.wille@gmail.com>                                       #
@@ -153,6 +153,10 @@ class Sinatra::Bells
           value = Array(hash[field]).map(&:to_s).delete_if(&:empty?)
           format % [value.join(separator), field] unless value.empty?
         }
+      end
+
+      def partial(name, locals = {}, layout = false)
+        send(settings.default_renderer, :"_#{name}", locals: locals, layout: layout)
       end
 
     end

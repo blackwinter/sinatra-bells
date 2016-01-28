@@ -1,24 +1,24 @@
 # -*- encoding: utf-8 -*-
-# stub: sinatra-bells 0.2.0 ruby lib
+# stub: sinatra-bells 0.3.0 ruby lib
 
 Gem::Specification.new do |s|
   s.name = "sinatra-bells"
-  s.version = "0.2.0"
+  s.version = "0.3.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.require_paths = ["lib"]
   s.authors = ["Jens Wille"]
-  s.date = "2015-11-18"
+  s.date = "2016-01-28"
   s.description = "Extends Sinatra with some convenience shortcuts."
   s.email = "jens.wille@gmail.com"
   s.extra_rdoc_files = ["README", "COPYING", "ChangeLog"]
   s.files = ["COPYING", "ChangeLog", "README", "Rakefile", "lib/sinatra-bells.rb", "lib/sinatra/bells.rb", "lib/sinatra/bells/helpers.rb", "lib/sinatra/bells/helpers/controller.rb", "lib/sinatra/bells/helpers/view.rb", "lib/sinatra/bells/version.rb"]
   s.homepage = "http://github.com/blackwinter/sinatra-bells"
   s.licenses = ["AGPL-3.0"]
-  s.post_install_message = "\nsinatra-bells-0.2.0 [2015-11-18]:\n\n* Added shortcuts for all HTML elements to Sinatra::Bells::Helpers::View.\n* Added Sinatra::Bells.set_defer.\n* Added Sinatra::Bells.set_async.\n\n"
-  s.rdoc_options = ["--title", "sinatra-bells Application documentation (v0.2.0)", "--charset", "UTF-8", "--line-numbers", "--all", "--main", "README"]
+  s.post_install_message = "\nsinatra-bells-0.3.0 [2016-01-28]:\n\n* Added Sinatra::Bells::Helpers::View#partial.\n\n"
+  s.rdoc_options = ["--title", "sinatra-bells Application documentation (v0.3.0)", "--charset", "UTF-8", "--line-numbers", "--all", "--main", "README"]
   s.required_ruby_version = Gem::Requirement.new(">= 1.9.3")
-  s.rubygems_version = "2.5.0"
+  s.rubygems_version = "2.5.1"
   s.summary = "Sinatra with some more bells and whistles."
 
   if s.respond_to? :specification_version then

@@ -2,6 +2,10 @@
 
 = Revision history for sinatra-bells
 
+== 0.4.0 [unreleased]
+
+* Added Sinatra::Bells::Helpers::View#tag__ and HTML element helpers.
+
 == 0.3.0 [2016-01-28]
 
 * Added Sinatra::Bells::Helpers::View#partial.

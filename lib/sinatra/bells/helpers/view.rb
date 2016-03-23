@@ -68,6 +68,10 @@ class Sinatra::Bells
               def #{name}_(*args, &block)
                 tag_(#{name.inspect}, *args, &block)
               end
+
+              def #{name}__(*args)
+                tag__(#{name.inspect}, *args)
+              end
             EOT
           }
         end
@@ -85,6 +89,10 @@ class Sinatra::Bells
                 end
 
                 tag_(#{name.inspect}, *args, &block)
+              end
+
+              def #{name}__(*args)
+                tag__(#{name.inspect}, *args)
               end
             EOT
           }
@@ -120,6 +128,12 @@ class Sinatra::Bells
       end
 
       def tag_(name, *args)
+        tag__(name, *args)
+        yield args if block_given?
+        args.push('</', name, '>').join
+      end
+
+      def tag__(name, *args)
         args.unshift('<', name, '>')
 
         if args.last.is_a?(Hash)
@@ -127,9 +141,7 @@ class Sinatra::Bells
           args.insert(2, ' ', attr.join(' ')) unless attr.empty?
         end
 
-        yield args if block_given?
-
-        args.push('</', name, '>').join
+        args.join
       end
 
       define_html_tag_method(*HTML_ELEMENTS)

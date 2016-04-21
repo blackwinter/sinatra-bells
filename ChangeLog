@@ -2,8 +2,9 @@
 
 = Revision history for sinatra-bells
 
-== 0.4.0 [unreleased]
+== 0.4.0 [2016-06-06]
 
+* Prevent Sinatra's hash merge behaviour in Sinatra::Bells.set.
 * Added Sinatra::Bells::Helpers::View#tag__ and HTML element helpers.
 
 == 0.3.0 [2016-01-28]

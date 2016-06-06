@@ -2,6 +2,10 @@
 
 = Revision history for sinatra-bells
 
+== 0.4.1 [2016-06-06]
+
+* Fixed regression introduced in 0.4.0.
+
 == 0.4.0 [2016-06-06]
 
 * Prevent Sinatra's hash merge behaviour in Sinatra::Bells.set.

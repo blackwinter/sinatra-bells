@@ -128,7 +128,7 @@ class Sinatra::Bells
       end
 
       def tag_(name, *args)
-        tag__(name, *args)
+        args = [tag__(name, *args)]
         yield args if block_given?
         args.push('</', name, '>').join
       end
